@@ -1,0 +1,21 @@
+:root {
+  --color: #fff;
+  --background: #121212;
+  --modal-text: #121212;
+  --border-color: rgba(0, 0, 0, 0.23)
+};
+
+$border-color-default: var(--border-color);
+$border-color-blue: rgba(25, 118, 210, 0.5);
+$default-border: 1px solid $border-color-default;
+$dark-color: #121212;
+$dark-background: black;
+
+@function set-text-color($background) {
+  @if (lightness( $background ) > 50) {
+    @return #121212; // Lighter color, return black
+  }
+  @else {
+    @return #fff; // Darker color, return white
+  }
+}

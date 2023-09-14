@@ -1,0 +1,67 @@
+@import "../../../styles-base/mixins";
+@import "../../../styles-base/variables";
+
+.friend-container {
+  @include center;
+  justify-content: space-evenly;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+  height: 100vh;
+  padding-top: 6rem;
+
+  .friend-section {
+    @include center;
+    width: 30vw;
+    min-width: 350px;
+    max-width: 450px;
+    height: 95%;
+    justify-content: flex-start;
+    flex: 1;
+
+    .scroll {
+      width: 90%;
+      overflow: scroll;
+      max-height: 100%;
+    }
+  }
+
+  .row {
+    flex-direction: row;
+  }
+}
+
+.show {
+  display: none;
+}
+
+@media screen and (max-width: 1050px) {
+  .hide {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .show-mobile {
+    display: flex !important;
+  }
+  .friend-container {
+    @include center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    padding-top: 4rem;
+
+    .friend-section {
+      width: 100vw;
+    }
+
+    .scroll {
+      padding: 1rem;
+      height: 95%;
+      width: 100%;
+    }
+  }
+}
