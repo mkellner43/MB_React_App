@@ -16,7 +16,7 @@ const io = new Server(httpServer, {
     credentials: true,
   },
 });
-
+  
 io.on("connection", async (socket) => {
   socket.join(socket.handshake.auth.userID);
   socket.on("send message", ({ id, thread }) => {
@@ -68,6 +68,6 @@ io.on("connection", async (socket) => {
 });
 
 
-httpServer.listen(process.env.PORT || 3000, () => {
-  console.log(`listening on ${process.env.PORT || 3000}`);
+httpServer.listen(process.env.SOCKET_PORT || 8900, () => {
+  console.log(`listening on ${process.env.PORT || 8900}`);
 });

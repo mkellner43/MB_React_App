@@ -1,0 +1,55 @@
+version: '3'
+services:
+  nginx:
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: nginx
+    ports:
+     - 80:80
+    networks:
+      - shared-network
+  frontend:
+    image: myviteapp
+    env_file:
+      - ./frontend/.env
+    build: 
+      context: frontend
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    networks:
+      - shared-network
+    depends_on:
+      - nginx
+      - backend
+      - socket
+  backend:
+    image: backend-image
+    env_file:
+      - ./backend/.env
+    restart: unless-stopped
+    build: 
+      context: backend
+      dockerfile: Dockerfile
+    ports:
+      - 3001:3001
+    depends_on:
+      - nginx
+    networks:
+      - shared-network
+  socket:
+    image: socket-image
+    env_file:
+      - ./socket/.env
+    restart: unless-stopped
+    build: 
+      context: socket
+      dockerfile: Dockerfile
+    ports:
+      - 8900:8900
+    networks:
+      - shared-network
+
+networks:
+  shared-network:    

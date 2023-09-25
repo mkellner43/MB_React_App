@@ -8,11 +8,11 @@ export function useSocket() {
 
 export function SocketProvider({id, children}) {
   const [socket, setSocket] = useState()
-  
   useEffect(() => {
     const currentUser = JSON.parse(sessionStorage.getItem('user'))
     const newSocket = io(import.meta.env.VITE_SOCKET_URL,
-     {
+     { 
+       transports: ['websocket'],
        auth: {
         sessionID: currentUser.token,
         userID: currentUser.id,
